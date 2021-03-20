@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+
+    
+    <meta charset="UTF-8">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=baa5d6271d9308b10ccf34e5051e946a56dca57c">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">How to verify checksum on macOS</h1>
+      <h2 class="project-tagline">Just th TK files with some knowledge.</h2>
+      
+        <a href="https://github.com/thomaskrampe/blog" class="btn">View on GitHub</a>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="how-to-verify-checksum-on-macos">How to verify checksum on macOS</h1>
+
+<h2 id="what-is-a-checksum">What is a checksum</h2>
+
+<p>A checksum is a sequence of numbers and letters derived from a piece of stored or transmitted digital data for the purpose of detecting errors that may have been introduced during its transmission or storage. It is usually applied to an installation file after it is received from the download server. So if you know the checksum of an original file, you can use it to check whether your copy of the file is identical or not.
+To verify the checksum on your Mac first you need to open Terminal app. The Terminal app is in the Utilities folder in Applications. To open it, either open your Applications folder, then open Utilities and double-click on Terminal, or press Command and Spacebar to launch Spotlight and type “Terminal” then double-click the search result or simply press Enter.</p>
+
+<h2 id="verifying-sha-1-sha-256-sha-512-checksum">Verifying SHA-1, SHA-256, SHA-512 checksum</h2>
+
+<p>Type the following command in your Terminal:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">shasum <span class="nt">-a</span> <span class="o">[</span>1/256/512] /full/path/to/your/file</code></pre></figure>
+
+<h3 id="using-openssl-to-verify-sha-1-sha-256-sha-512">Using OpenSSL to verify SHA-1, SHA-256, SHA-512</h3>
+
+<p>Type the following command in your Terminal:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">openssl <span class="o">[</span>sha1/sha256/sha512] /full/path/to/your/file</code></pre></figure>
+
+<p>Or you can type the command openssl sha512 followed by space and drag and drop the file to the Terminal.</p>
+
+<p>Output should look like:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">thomas@Toms-MBP ~ % shasum <span class="nt">-a</span> 512 /Users/thomas/Desktop/Purchase.pdf
+a735f6d82fc7c6757211274b802e8f693bf0352d025197c9d9bcb689817cd81b143c89c4d75fc8e351ae70a6b57e53359449b1e9df4c2f233994717c71f23fde  /Users/thomas/Desktop/Purchase.pdf
+
+thomas@Toms-MBP ~ % openssl sha512 /Users/thomas/Desktop/Purchase.pdf
+SHA512<span class="o">(</span>/Users/thomas/Desktop/Purchase.pdf<span class="o">)=</span> a735f6d82fc7c6757211274b802e8f693bf0352d025197c9d9bcb689817cd81b143c89c4d75fc8e351ae70a6b57e53359449b1e9df4c2f233994717c71f23fde</code></pre></figure>
+
+<h2 id="verifying-md5-checksum">Verifying MD5 checksum</h2>
+
+<p>MD5 is no longer recommended as a checksum hash for security reasons, but some legacy programs may still use it.</p>
+
+<p>Type the following command in your Terminal:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">md5 /full/path/to/your/file</code></pre></figure>
+
+<p>Or you can type the command md5 followed by space and drag and drop the file to the Terminal.</p>
+
+<p>You can use <a href="https://www.diffchecker.com/">Diffchecker</a> to find any deferences between them.</p>
+
+<h3 id="using-openssl-to-verify-md5">Using OpenSSL to verify MD5</h3>
+
+<p>Type the following command in your Terminal:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">openssl md5 /full/path/to/your/file</code></pre></figure>
+
+<p>Or you can type the command openssl md5 followed by space and drag and drop the file to the Terminal.</p>
+
+<p>Output should look like:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">thomas@Toms-MBP ~ % md5 /Users/thomas/Desktop/Purchase.pdf
+MD5 <span class="o">(</span>/Users/thomas/Desktop/Purchase.pdf<span class="o">)</span> <span class="o">=</span> 43298e4c3c8f654e3438dbf7c5fc07a8
+
+thomas@Toms-MBP ~ % openssl md5 /Users/thomas/Desktop/Purchase.pdf
+MD5<span class="o">(</span>/Users/thomas/Desktop/Purchase.pdf<span class="o">)=</span> 43298e4c3c8f654e3438dbf7c5fc07a8
+thomas@Toms-MBP ~ %</code></pre></figure>
+
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/thomaskrampe/blog">blog</a> is maintained by <a href="https://github.com/thomaskrampe">thomaskrampe</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

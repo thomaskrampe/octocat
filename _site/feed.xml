@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-03-03T14:19:43+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The TK files</title><subtitle>Just th TK files with some knowledge.</subtitle><entry><title type="html">How to verify checksum on macOS</title><link href="http://localhost:4000/macos/2021/03/01/How-to-verify-checksum-on-macOS.html" rel="alternate" type="text/html" title="How to verify checksum on macOS" /><published>2021-03-01T08:16:00+01:00</published><updated>2021-03-01T08:16:00+01:00</updated><id>http://localhost:4000/macos/2021/03/01/How%20to%20verify%20checksum%20on%20macOS</id><content type="html" xml:base="http://localhost:4000/macos/2021/03/01/How-to-verify-checksum-on-macOS.html">&lt;h1 id=&quot;how-to-verify-checksum-on-macos&quot;&gt;How to verify checksum on macOS&lt;/h1&gt;
+
+&lt;h2 id=&quot;what-is-a-checksum&quot;&gt;What is a checksum&lt;/h2&gt;
+
+&lt;p&gt;A checksum is a sequence of numbers and letters derived from a piece of stored or transmitted digital data for the purpose of detecting errors that may have been introduced during its transmission or storage. It is usually applied to an installation file after it is received from the download server. So if you know the checksum of an original file, you can use it to check whether your copy of the file is identical or not.
+To verify the checksum on your Mac first you need to open Terminal app. The Terminal app is in the Utilities folder in Applications. To open it, either open your Applications folder, then open Utilities and double-click on Terminal, or press Command and Spacebar to launch Spotlight and type “Terminal” then double-click the search result or simply press Enter.&lt;/p&gt;
+
+&lt;h2 id=&quot;verifying-sha-1-sha-256-sha-512-checksum&quot;&gt;Verifying SHA-1, SHA-256, SHA-512 checksum&lt;/h2&gt;
+
+&lt;p&gt;Type the following command in your Terminal:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;shasum &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1/256/512] /full/path/to/your/file&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;using-openssl-to-verify-sha-1-sha-256-sha-512&quot;&gt;Using OpenSSL to verify SHA-1, SHA-256, SHA-512&lt;/h3&gt;
+
+&lt;p&gt;Type the following command in your Terminal:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;openssl &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sha1/sha256/sha512] /full/path/to/your/file&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Or you can type the command openssl sha512 followed by space and drag and drop the file to the Terminal.&lt;/p&gt;
+
+&lt;p&gt;Output should look like:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;thomas@Toms-MBP ~ % shasum &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; 512 /Users/thomas/Desktop/Purchase.pdf
+a735f6d82fc7c6757211274b802e8f693bf0352d025197c9d9bcb689817cd81b143c89c4d75fc8e351ae70a6b57e53359449b1e9df4c2f233994717c71f23fde  /Users/thomas/Desktop/Purchase.pdf
+
+thomas@Toms-MBP ~ % openssl sha512 /Users/thomas/Desktop/Purchase.pdf
+SHA512&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;/Users/thomas/Desktop/Purchase.pdf&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt; a735f6d82fc7c6757211274b802e8f693bf0352d025197c9d9bcb689817cd81b143c89c4d75fc8e351ae70a6b57e53359449b1e9df4c2f233994717c71f23fde&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;verifying-md5-checksum&quot;&gt;Verifying MD5 checksum&lt;/h2&gt;
+
+&lt;p&gt;MD5 is no longer recommended as a checksum hash for security reasons, but some legacy programs may still use it.&lt;/p&gt;
+
+&lt;p&gt;Type the following command in your Terminal:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;md5 /full/path/to/your/file&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Or you can type the command md5 followed by space and drag and drop the file to the Terminal.&lt;/p&gt;
+
+&lt;p&gt;You can use &lt;a href=&quot;https://www.diffchecker.com/&quot;&gt;Diffchecker&lt;/a&gt; to find any deferences between them.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-openssl-to-verify-md5&quot;&gt;Using OpenSSL to verify MD5&lt;/h3&gt;
+
+&lt;p&gt;Type the following command in your Terminal:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;openssl md5 /full/path/to/your/file&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Or you can type the command openssl md5 followed by space and drag and drop the file to the Terminal.&lt;/p&gt;
+
+&lt;p&gt;Output should look like:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;thomas@Toms-MBP ~ % md5 /Users/thomas/Desktop/Purchase.pdf
+MD5 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;/Users/thomas/Desktop/Purchase.pdf&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 43298e4c3c8f654e3438dbf7c5fc07a8
+
+thomas@Toms-MBP ~ % openssl md5 /Users/thomas/Desktop/Purchase.pdf
+MD5&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;/Users/thomas/Desktop/Purchase.pdf&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt; 43298e4c3c8f654e3438dbf7c5fc07a8
+thomas@Toms-MBP ~ %&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="macOS" /><summary type="html">How to verify checksum on macOS</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2021/02/28/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2021-02-28T14:16:45+01:00</published><updated>2021-02-28T14:16:45+01:00</updated><id>http://localhost:4000/jekyll/update/2021/02/28/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2021/02/28/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;Tom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &apos;Hi, Tom&apos; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
